@@ -1,5 +1,9 @@
 <template>
   <view>
+    <!-- 搜索 -->
+ <view class="search-box">
+      <my-search @click='toSearch' bgcolor="#C00000" radius="15"></my-search>
+ </view>
     <!-- 轮播图区域 -->
     <swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000" :circular="true">
       <swiper-item v-for="(item,i) in swiperList" :key="i">
@@ -59,6 +63,11 @@
       this.getFloorList()
     },
     methods: {
+      toSearch(){
+        uni.navigateTo({
+          url:'/subpkg/search/search'
+        })
+      },
       floorClickHandler(item){
         console.log("item",item) 
         let navigator_url  =  item.target.dataset.item.navigator_url
@@ -111,6 +120,11 @@
 </script>
 
 <style lang="scss">
+  .search-box {
+    position: sticky;
+    top:0;
+    z-index: 999;
+  }
   swiper {
     height: 330rpx;
 
